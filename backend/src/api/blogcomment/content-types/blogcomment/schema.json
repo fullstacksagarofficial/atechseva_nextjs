@@ -1,0 +1,48 @@
+{
+  "kind": "collectionType",
+  "collectionName": "blogcomments",
+  "info": {
+    "singularName": "blogcomment",
+    "pluralName": "blogcomments",
+    "displayName": "blogcomment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "email": {
+      "type": "email"
+    },
+    "comment": {
+      "type": "text",
+      "required": true
+    },
+    "is_approved": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "blog": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::blog.blog"
+    },
+    "reply": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::blogcomment.blogcomment",
+      "inversedBy": "blogcomment"
+    },
+    "blogcomment": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::blogcomment.blogcomment",
+      "inversedBy": "reply"
+    }
+  }
+}
